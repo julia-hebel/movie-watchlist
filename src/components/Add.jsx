@@ -32,6 +32,20 @@ function Add() {
     setMovieUrl('');
   }
 
+  // function checkImage(url) {
+  //   var request = new XMLHttpRequest();
+  //   request.open("GET", url, true);
+  //   request.send();
+  //   request.onload = function() {
+  //     if (request.status == 200) //if(statusText == OK)
+  //     {
+  //       console.log('img exists');
+  //     } else {
+  //       console.log('img does not exist');
+  //     }
+  //   }
+  // }
+
   function renderFeedback() {
     if (errorType === 'EMPTY') {
       return (
