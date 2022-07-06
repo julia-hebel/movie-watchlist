@@ -32,6 +32,10 @@ export function GlobalProvider(props) {
     dispatch({ type: 'REMOVE_MOVIE_FROM_WATCHLIST', payload: id });
   }
 
+  function removeMovieFromWatched(id) {
+    dispatch({ type: 'REMOVE_MOVIE_FROM_WATCHED', payload: id });
+  }
+
   function moveMovieToWatched(movie) {
     dispatch({ type: 'ADD_MOVIE_TO_WATCHED', payload: movie });
   }
@@ -45,6 +49,7 @@ export function GlobalProvider(props) {
     watched: state.watched,
     addMovieToWatchlist,
     removeMovieFromWatchlist,
+    removeMovieFromWatched,
     moveMovieToWatched,
     moveMovieToWatchlist,
   };

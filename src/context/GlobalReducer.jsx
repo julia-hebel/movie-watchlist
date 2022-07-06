@@ -13,6 +13,11 @@ export default function GlobalReducer(state, action) {
           (movie) => movie.id !== action.payload
         ),
       };
+    case 'REMOVE_MOVIE_FROM_WATCHED':
+      return {
+        ...state,
+        watched: state.watched.filter((movie) => movie.id !== action.payload),
+      };
     case 'ADD_MOVIE_TO_WATCHED':
       return {
         ...state,

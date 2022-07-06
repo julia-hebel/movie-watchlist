@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import { GlobalContext } from '../context/GlobalState';
+import { FaTimes } from 'react-icons/fa';
 
 function MovieControls({ movie, type, setMovieControlsVisible }) {
-  const { removeMovieFromWatchlist, moveMovieToWatched, moveMovieToWatchlist } =
-    useContext(GlobalContext);
+  const {
+    removeMovieFromWatchlist,
+    removeMovieFromWatched,
+    moveMovieToWatched,
+    moveMovieToWatchlist,
+  } = useContext(GlobalContext);
+
   return (
     <div className='leading-none'>
-      <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
+      <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>   {/* dimmed background */}
       <div className='absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center'>
         <button
           className='w-11/12 h-1/6 my-1 px-1.5 hover:bg-white hover:opacity-80 hover:text-black border border-white rounded-md'
@@ -21,7 +26,11 @@ function MovieControls({ movie, type, setMovieControlsVisible }) {
         </button>
         <button
           className='w-11/12 h-1/6 my-1 px-1.5 hover:bg-white hover:opacity-80 hover:text-black border border-white rounded-md'
-          onClick={() => removeMovieFromWatchlist(movie.id)}
+          onClick={
+            type === 'WATCHLIST'
+              ? () => removeMovieFromWatchlist(movie.id)
+              : () => removeMovieFromWatched(movie.id)
+          }
         >
           DELETE
         </button>
