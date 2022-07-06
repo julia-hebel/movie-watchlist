@@ -17,13 +17,18 @@ function Add() {
       return;
     }
 
-    if (!movieUrl.includes('.jpg'|'.jpeg'|'.png'|'.gif')) {
+    if (!movieUrl.includes('.jpg' | '.jpeg' | '.png' | '.gif')) {
       setErrorType('INVALID_URL');
       return;
     }
 
     const id = new Date().getTime();
-    const newMovie = { id, movieTitle, movieUrl };
+    const newMovie = {
+      id: id,
+      movieTitle: movieTitle,
+      movieUrl: movieUrl,
+      watched: false,
+    };
 
     addMovieToWatchlist(newMovie);
     setErrorType('');
@@ -31,20 +36,6 @@ function Add() {
     setMovieTitle('');
     setMovieUrl('');
   }
-
-  // function checkImage(url) {
-  //   var request = new XMLHttpRequest();
-  //   request.open("GET", url, true);
-  //   request.send();
-  //   request.onload = function() {
-  //     if (request.status == 200) //if(statusText == OK)
-  //     {
-  //       console.log('img exists');
-  //     } else {
-  //       console.log('img does not exist');
-  //     }
-  //   }
-  // }
 
   function renderFeedback() {
     if (errorType === 'EMPTY') {
@@ -56,7 +47,9 @@ function Add() {
     } else if (errorType === 'INVALID_URL') {
       return (
         <div className='text-center mt-8 font-bold text-xl text-red-400'>
-          URL is invalid!
+          URL is invalid! <br />
+          (not JPG/JPEG/PNG/GIF or can't load the image) <br />
+          Please try a different URL
         </div>
       );
     } else if (lastMovieAdded) {
